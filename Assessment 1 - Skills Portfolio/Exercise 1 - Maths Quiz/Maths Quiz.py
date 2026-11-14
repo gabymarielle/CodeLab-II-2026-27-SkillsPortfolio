@@ -6,10 +6,14 @@ def switch_frame(frame):
 
 def easy_diff():
     switch_frame(frame2)
+def moderate_diff():
+    switch_frame(frame3)
+def advanced_diff():
+    switch_frame(frame4)
 
 # Creates the window of the GUI
 root = Tk()
-root.title('Maths Quiz')
+root.title('Math Quiz')
 root.config(bg='pink')
 root.geometry('600x600')
 root.resizable(0,0)
@@ -24,11 +28,11 @@ label2.pack()
 
 diff = Label(frame1, text="Choose your difficulty level:")
 diff.pack()
-button1 = Button(frame1, text="Easy", command=lambda: switch_frame(frame2))
+button1 = Button(frame1, text="Easy", command=easy_diff)
 button1.pack()
-button2 = Button(frame1, text="Moderate", command=lambda: switch_frame(frame3))
+button2 = Button(frame1, text="Moderate", command=moderate_diff)
 button2.pack()
-button3 = Button(frame1, text="Advanced", command=lambda: switch_frame())
+button3 = Button(frame1, text="Advanced", command=advanced_diff)
 button3.pack()
 
 frame1.place(x=95,y=50, width=400,height=400)
@@ -63,7 +67,23 @@ button5.pack()
 backb2 = Button(frame3, text="Go Back", command=lambda: switch_frame(frame1))
 backb2.pack()
 
-frame2.place(x=95,y=50, width=400,height=400)
+frame3.place(x=95,y=50, width=400,height=400)
+
+# Frame 4 - Advanced difficulty page
+frame4 = Frame(root, bg="pink")
+
+label5 = Label(frame4, text="Advanced difficulty")
+label5.pack()
+
+entry3 = Entry(frame4)
+entry3.pack()
+
+button6 = Button(frame4, text="Submit")
+button6.pack()
+backb3 = Button(frame4, text="Go Back", command=lambda: switch_frame(frame1))
+backb3.pack()
+
+frame4.place(x=95,y=50, width=400,height=400)
 
 
 switch_frame(frame1)
