@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 # Function to switch the frames
 def switch_frame(frame):
@@ -10,6 +11,7 @@ def moderate_diff():
     switch_frame(frame3)
 def advanced_diff():
     switch_frame(frame4)
+
 
 # Creates the window of the GUI
 root = Tk()
@@ -28,6 +30,7 @@ label2.pack()
 
 diff = Label(frame1, text="Choose your difficulty level:")
 diff.pack()
+# Buttons to direct to a different frame of your chosen difficulty
 button1 = Button(frame1, text="Easy", command=easy_diff)
 button1.pack()
 button2 = Button(frame1, text="Moderate", command=moderate_diff)
@@ -43,6 +46,11 @@ frame2 = Frame(root, bg="pink")
 label3 = Label(frame2, text="Easy difficulty")
 label3.pack()
 
+random_num = random.randint(0, 9)
+easynum = Label(frame2, text=f"Question: {random_num}")
+easynum.pack()
+
+# An entry function to submit your answers
 entry1 = Entry(frame2)
 entry1.pack()
 
@@ -59,6 +67,10 @@ frame3 = Frame(root, bg="pink")
 label4 = Label(frame3, text="Moderate difficulty")
 label4.pack()
 
+random_num2 = random.randint(10, 99)
+moderatenum = Label(frame3, text=f"Question: {random_num2}")
+moderatenum.pack()
+
 entry2 = Entry(frame3)
 entry2.pack()
 
@@ -74,6 +86,10 @@ frame4 = Frame(root, bg="pink")
 
 label5 = Label(frame4, text="Advanced difficulty")
 label5.pack()
+
+random_num3 = random.randint(1000, 9999)
+advancednum = Label(frame4, text=f"Question: {random_num3}")
+advancednum.pack()
 
 entry3 = Entry(frame4)
 entry3.pack()
