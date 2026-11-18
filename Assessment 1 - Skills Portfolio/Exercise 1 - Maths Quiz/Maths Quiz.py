@@ -21,18 +21,13 @@ def decideOperation():
 
 #flow: randomizer -> return
 
-easynum = random.randint(0,9)
-moderatenum = random.randint(10,99)
-
-
-def randomInt():
-    if easynum:
-        print(f"Question: {easynum}{oper_value}{easynum}")
-    elif moderatenum == random.randint(10, 99):
-        print('{moderatenum}{oper_value}{moderatenum}')
-    return
-
 oper_value =  decideOperation()
+
+
+
+    
+
+
 
 # Creates the window of the GUI
 root = Tk()
@@ -67,7 +62,9 @@ frame2 = Frame(root, bg="pink")
 label3 = Label(frame2, text="Easy difficulty")
 label3.pack()
 
-easynum = Label(frame2, text=f"Question: {easynum}{oper_value}{easynum}")
+random_num1 = random.randint(0, 9)  
+random_num2 = random.randint(0, 9)
+easynum = Label(frame2, text=f"Question: {random_num1}{oper_value}{random_num2}")
 #temp_easy = (values from question) - use for comparing the value with the user's input
 easynum.pack()
 
@@ -89,7 +86,8 @@ frame3 = Frame(root, bg="pink")
 label4 = Label(frame3, text="Moderate difficulty")
 label4.pack()
 
-moderatenum = Label(frame3, text=f"Question: {randomInt}")
+random_num3 = random.randint(10, 99)
+moderatenum = Label(frame3, text=f"Question: {random_num3}")
 moderatenum.pack()
 
 
