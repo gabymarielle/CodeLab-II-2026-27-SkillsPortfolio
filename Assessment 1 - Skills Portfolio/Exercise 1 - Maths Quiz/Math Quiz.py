@@ -7,6 +7,8 @@ def displayMenu(main_frame):
 
 #redefine with actual values
 def easy_diff():
+    q = askQuestion('easy')
+    easy_question.config(text=q)
     displayMenu(easy_frame)
 def moderate_diff():
     displayMenu(mod_frame)
@@ -44,27 +46,34 @@ def randomInt(difficulty):
         return var1, var2
 
 def askQuestion(difficulty):
-    testType = difficulty
-    rand1, rand2 = randomInt(testType)
-    return displayProblem(rand1, rand2)
-    answer = eval(question)
+    global current_answer
+    current_answer = 0
+    var1, var2 = randomInt(difficulty)
+    question = displayProblem(var1, var2)
 
+    current_answer = eval(question)
 
+    return question
 
-#ops = {'+': operator.add,
-       #'-': operator.sub}
+def isCorrect():
+    user_input = answer_input.get().strip()
+    answer_input.delete(0, END)
+    attempts = 0
+    max_attempts = 2
 
-#def decideOperation():
-    #value = random.choice(list(ops.keys()))
-    #return value
-
-
-
-
-
+    try:
+        user_num = int(user_input)
+        if user_num == current_answer:
+            feedback.config(text="Correct!")
+        else:
+            feedback.config(text='Incorrect!')
+            attempts -= 1
+            feedback.config(text='Try Again')
+    except ValueError:
+        feedback.config(text='Please enter a valid number.')
+ 
+    
 #def displayResults():
-
-
 
 
 root = Tk()
@@ -89,9 +98,14 @@ main_frame.place(x=100, y=100, width=400, height=400)
 # Easy Difficulty Frame
 easy_frame = Frame(root, bg='pink')
 easy_num = Label(easy_frame, text="Easy Difficulty", font=('Comfortaa'), bg='pink').pack()
-easy_question = Label(easy_frame, text=f"{askQuestion('easy')}").pack()    
-easy_input = Entry(easy_frame).pack(pady=10)
-easy_button = Button(easy_frame, text="Submit", font=('Comfortaa')).pack(pady=10)
+easy_question = Label(easy_frame, text="")
+easy_question.pack()    
+answer_input = Entry(easy_frame)
+answer_input.pack(pady=10)
+feedback = Label(easy_frame, text="", bg='pink')
+feedback.pack()
+easy_button = Button(easy_frame, text="Submit", font=('Comfortaa'), command=isCorrect)
+easy_button.pack(pady=10)
 
 easy_frame.place(x=100, y=100, width=400, height=400)
 
@@ -100,7 +114,7 @@ easy_frame.place(x=100, y=100, width=400, height=400)
 mod_frame = Frame(root, bg='pink')
 mod_num = Label(mod_frame, text="Moderate Difficulty", font=('Comfortaa'), bg='pink').pack()
 mod_question = Label(mod_frame, text=f"{askQuestion('moderate')}").pack()
-mod_input = Entry(mod_frame).pack(pady=10)
+#answer_input = Entry(mod_frame).pack(pady=10)
 mod_button = Button(mod_frame, text="Submit", font=('Comfortaa')).pack(pady=10)
 
 mod_frame.place(x=100, y=100, width=400, height=400)
@@ -110,7 +124,7 @@ mod_frame.place(x=100, y=100, width=400, height=400)
 adv_frame = Frame(root, bg='pink')
 adv_num = Label(adv_frame, text="Advanced Difficulty", font=('Comfortaa'), bg='pink').pack()
 adv_question = Label(adv_frame, text=f"{askQuestion('advanced')}").pack()
-adv_input = Entry(adv_frame).pack(pady=10)
+#answer_input = Entry(adv_frame).pack(pady=10)
 adv_button = Button(adv_frame, text="Submit", font=('Comfortaa')).pack(pady=10)
 
 adv_frame.place(x=100, y=100, width=400, height=400)
