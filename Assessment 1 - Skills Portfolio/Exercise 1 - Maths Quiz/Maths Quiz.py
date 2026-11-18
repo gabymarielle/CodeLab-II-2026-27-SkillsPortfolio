@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import operator 
 
 # Function to switch the frames
 def switch_frame(frame):
@@ -12,6 +13,26 @@ def moderate_diff():
 def advanced_diff():
     switch_frame(frame4)
 
+#operation = ['+', '-']
+def decideOperation():
+    operation = ['+', '-']
+    value = random.choice(operation)
+    return value
+
+#flow: randomizer -> return
+
+easynum = random.randint(0,9)
+moderatenum = random.randint(10,99)
+
+
+def randomInt():
+    if easynum:
+        print(f"Question: {easynum}{oper_value}{easynum}")
+    elif moderatenum == random.randint(10, 99):
+        print('{moderatenum}{oper_value}{moderatenum}')
+    return
+
+oper_value =  decideOperation()
 
 # Creates the window of the GUI
 root = Tk()
@@ -37,7 +58,7 @@ button2 = Button(frame1, text="Moderate", command=moderate_diff)
 button2.pack()
 button3 = Button(frame1, text="Advanced", command=advanced_diff)
 button3.pack()
-
+ 
 frame1.place(x=95,y=50, width=400,height=400)
 
 # Frame 2 - Easy difficulty page
@@ -46,9 +67,10 @@ frame2 = Frame(root, bg="pink")
 label3 = Label(frame2, text="Easy difficulty")
 label3.pack()
 
-random_num = random.randint(0, 9)
-easynum = Label(frame2, text=f"Question: {random_num}")
+easynum = Label(frame2, text=f"Question: {easynum}{oper_value}{easynum}")
+#temp_easy = (values from question) - use for comparing the value with the user's input
 easynum.pack()
+
 
 # An entry function to submit your answers
 entry1 = Entry(frame2)
@@ -67,9 +89,11 @@ frame3 = Frame(root, bg="pink")
 label4 = Label(frame3, text="Moderate difficulty")
 label4.pack()
 
-random_num2 = random.randint(10, 99)
-moderatenum = Label(frame3, text=f"Question: {random_num2}")
+moderatenum = Label(frame3, text=f"Question: {randomInt}")
 moderatenum.pack()
+
+
+#question - randomnum1 + operator + randomnum2
 
 entry2 = Entry(frame3)
 entry2.pack()
