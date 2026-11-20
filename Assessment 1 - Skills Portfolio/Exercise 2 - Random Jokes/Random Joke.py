@@ -14,6 +14,10 @@ with open("randomJokes.txt", "r", encoding='utf-8') as file:
     punchline_text = ""
 
 def make_joke():
+    if punchline_text == "":
+        next_joke()
+
+def next_joke():
     global punchline_text
     tell_joke = random.choice(jokes)
     line = tell_joke.strip().split("?", 1)
@@ -21,17 +25,21 @@ def make_joke():
     punchline_text = line[1]
     punchline.config(text="")
 
+def show_punchline():
+    punchline.config(text=punchline_text)
+
 
     
 # Main Screen
 main_screen = Frame(root, bg="pink")
 joke = Label(main_screen, text='', font=('Comfortaa'), bg='pink', width=50)
 joke.grid(row=0, column=0, columnspan=2, pady=5)
-punchline = Label(main_screen, text='punchline', font=('Comfortaa'), bg='pink', width=20).grid(row=1, column=0, columnspan=2, pady=25)
+punchline = Label(main_screen, text='', font=('Comfortaa'), bg='pink', width=50)
+punchline.grid(row=1, column=0, columnspan=2, pady=25)
 display_joke = Button(main_screen, text='Alexa tell me a joke', font=('Comfortaa'), width=20, command=make_joke).grid(row=2, column=0, padx=5, pady=20)
-punchline_button = Button(main_screen, text='Show Punchline',   font=('Comfortaa'), width=20).grid(row=2, column=1, pady=5, padx=20)
-next_button = Button(main_screen, text='Next Joke', font=('Comfortaa'), width=20).grid(row=3, column=0, padx=5, pady=10)
-quit_button = Button(main_screen, text='Quit', font=('Comfortaa'), width=20).grid(row=3, column=1, padx=5, pady=10)
+punchline_button = Button(main_screen, text='Show Punchline', font=('Comfortaa'), width=20, command=show_punchline).grid(row=2, column=1, pady=5, padx=20)
+next_button = Button(main_screen, text='Next Joke', font=('Comfortaa'), width=20, command=next_joke).grid(row=3, column=0, padx=5, pady=10)
+quit_button = Button(main_screen, text='Quit', font=('Comfortaa'), width=20, command=root.destroy).grid(row=3, column=1, padx=5, pady=10)
 
 
 main_screen.place(x=110, y=100, width=600, height=400)
