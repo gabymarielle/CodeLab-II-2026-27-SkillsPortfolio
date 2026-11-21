@@ -1,17 +1,36 @@
 from tkinter import *
 
 
-
 with open("studentMarks.txt", "r", encoding='utf-8') as file:
     records = file.readlines()
+    file.close()
 
 def all_records():
+    all_data = ""
     for i in range(1, len(records)):
         data = records[i].strip().split(",")
-        data_sep = data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + data[4] + " " + data[5] + " "
-        main_output.config(text=data_sep)
-
-
+        coursework = int(data[2]) + int(data[3]) + int(data[4])
+        exam = int(data[5])
+        percentage = coursework + exam / 160 
+        if percentage >= 70:
+            grade = "A"
+        elif percentage >= 60:
+            grade = "B"
+        elif percentage >= 50:
+            grade = "C"
+        elif percentage >= 40:
+            grade = "D"
+        else:
+            grade = "F"
+        
+        all_data = all_data + "Student Number: " + data[0] + "\n"
+        all_data = all_data + "Student Name: " + data[1] + "\n"
+        all_data = all_data + "Total Coursework Mark: " + str(coursework) + "\n"
+        all_data = all_data + "Exam: " + str(exam) + "\n"
+        all_data = all_data + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
+        all_data = all_data + "Student Grade: " + grade + "\n"
+        all_data = all_data + "\n"
+        main_output.config(text=all_data)
 
 
 
@@ -42,7 +61,7 @@ main_output = Label(main_frame, text="")
 main_output.pack()
 
 
-main_frame.place(x=200, y=20, width=530, height=500)
+main_frame.place(x=200, y=20, width=530, height=600)
 
 
 
