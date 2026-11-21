@@ -7,11 +7,15 @@ with open("studentMarks.txt", "r", encoding='utf-8') as file:
 
 def all_records():
     all_data = ""
+    avg_percentage = 0
+
     for i in range(1, len(records)):
         data = records[i].strip().split(",")
         coursework = int(data[2]) + int(data[3]) + int(data[4])
         exam = int(data[5])
         percentage = (coursework + exam) / 160 * 100
+        avg_percentage = avg_percentage + percentage
+
         if percentage >= 70:
             grade = "A"
         elif percentage >= 60:
@@ -30,6 +34,12 @@ def all_records():
         all_data = all_data + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
         all_data = all_data + "Student Grade: " + grade + "\n"
         all_data = all_data + "\n"
+
+    student_num = len(records) - 1
+    average = avg_percentage / student_num
+
+    all_data = all_data + "TOTAL NUMBER OF STUDENTS: " + str(student_num) + "\n"
+    all_data = all_data + "AVERAGE PERCENTAGE OF THIS CLASS: " + str(round(average, 1)) + "%\n"
 
     main_output.config(state=NORMAL)
     main_output.delete("1.0", END)
