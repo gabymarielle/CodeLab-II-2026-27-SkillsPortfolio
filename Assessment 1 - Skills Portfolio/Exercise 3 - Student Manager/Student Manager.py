@@ -11,7 +11,7 @@ def all_records():
         data = records[i].strip().split(",")
         coursework = int(data[2]) + int(data[3]) + int(data[4])
         exam = int(data[5])
-        percentage = coursework + exam / 160 
+        percentage = (coursework + exam) / 160 * 100
         if percentage >= 70:
             grade = "A"
         elif percentage >= 60:
@@ -30,7 +30,11 @@ def all_records():
         all_data = all_data + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
         all_data = all_data + "Student Grade: " + grade + "\n"
         all_data = all_data + "\n"
-        main_output.config(text=all_data)
+
+    main_output.config(state=NORMAL)
+    main_output.delete("1.0", END)
+    main_output.insert(END, all_data)
+    main_output.config(state=DISABLED)
 
 
 
@@ -56,12 +60,14 @@ menu_frame.pack(side=LEFT)
 menu_frame.place(width=180, height=600)
 
 
+
 main_frame = Frame(root, bg='#F0F0F0')
-main_output = Label(main_frame, text="")
-main_output.pack()
+main_output = Text(main_frame)
+main_output.pack(side=LEFT, fill=BOTH, expand=True)
 
 
-main_frame.place(x=200, y=20, width=530, height=600)
+
+main_frame.place(x=200, y=20, width=530, height=560)
 
 
 
