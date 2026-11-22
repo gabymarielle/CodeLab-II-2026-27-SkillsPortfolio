@@ -70,6 +70,24 @@ def search():
             text = student_text(data)
     show_text(text)
 
+def view_highest():
+    search_frame.place_forget()
+    highest = records[1].strip().split(",")
+    for i in range(2, len(records)):
+        data = records[i].strip().split(",")
+        if get_percentage(data) > get_percentage(highest):
+            highest = data
+    show_text("STUDENT WITH HIGHEST MARK:\n\n" + student_text(highest)) 
+
+def view_lowest():
+    search_frame.place_forget()
+    lowest = records[1].strip().split(",")
+    for i in range(2, len(records)):
+        data = records[i].strip().split(",")
+        if get_percentage(data) < get_percentage(lowest):
+            lowest = data
+    show_text("STUDENT WITH LOWEST MARK:\n\n" + student_text(lowest)) 
+
 
 
 root = Tk()
@@ -84,8 +102,10 @@ view_all = Button(menu_frame, text='View All', width=15, command=all_records)
 view_all.pack(pady=(80, 15))
 view_indv = Button(menu_frame, text='View Individual', width=15, command=individual_records)
 view_indv.pack(pady=15)
-view_high = Button(menu_frame, text='View Highest', width=15).pack(pady=15)
-view_low = Button(menu_frame, text='View Lowest', width=15).pack(pady=15)
+view_high = Button(menu_frame, text='View Highest', width=15, command=view_highest)
+view_high.pack(pady=15)
+view_low = Button(menu_frame, text='View Lowest', width=15, command=view_lowest)
+view_low.pack(pady=15)
 sort_rec = Button(menu_frame, text='Sort', width=15).pack(pady=15)
 add_rec = Button(menu_frame, text='Add', width=15).pack(pady=15)
 del_rec = Button(menu_frame, text='Delete', width=15).pack(pady=15)
