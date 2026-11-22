@@ -5,6 +5,10 @@ with open("studentMarks.txt", "r", encoding='utf-8') as file:
     records = file.readlines()
     file.close()
 
+def get_percentage(data):
+    marks = int(data[2]) + int(data[3]) + int(data[4]) + int(data[5])
+    return marks / 160 * 100
+
 def get_grade(percentage):
     global grade
     if percentage >= 70:
@@ -23,6 +27,17 @@ def show_text(text):
     view_all_output.delete("1.0", END)
     view_all_output.insert(END, text)
     view_all_output.config(state=DISABLED)
+
+def student_text(data):
+    coursework = int(data[2]) + int(data[3]) + int(data[4])
+    percentage = get_percentage(data)
+    text = "Student Number: " + data[0] + "\n"
+    text = text + "Student Name: " + data[1] + "\n"
+    text = text + "Total Coursework Mark: " + str(coursework) + "\n"
+    text = text + "Exam: " + data[5] + "\n"
+    text = text + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
+    text = text + "Student Grade: " + get_grade(percentage) + "\n"
+    return text
         
 def all_records():
     search_frame.place_forget()
@@ -31,17 +46,8 @@ def all_records():
 
     for i in range(1, len(records)):
         data = records[i].strip().split(",")
-        coursework = int(data[2]) + int(data[3]) + int(data[4])
-        exam = int(data[5])
-        percentage = (coursework + exam) / 160 * 100
-        avg_percentage = avg_percentage + percentage
-        all_data = all_data + "Student Number: " + data[0] + "\n"
-        all_data = all_data + "Student Name: " + data[1] + "\n"
-        all_data = all_data + "Total Coursework Mark: " + str(coursework) + "\n"
-        all_data = all_data + "Exam: " + str(exam) + "\n"
-        all_data = all_data + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
-        all_data = all_data + "Student Grade: " + get_grade(percentage) + "\n"
-        all_data = all_data + "\n"
+        all_data = all_data + student_text(data) + "\n"
+        avg_percentage = avg_percentage + get_percentage(data)
 
     student_num = len(records) - 1
     average = avg_percentage / student_num
@@ -61,15 +67,7 @@ def search():
     for i in range(1, len(records)):
         data = records[i].strip().split(",")
         if data[0] == enter_num:
-            coursework = int(data[2]) + int(data[3]) + int(data[4])
-            exam = int(data[5])
-            percentage = (coursework + exam) / 160 * 100
-            text = "Student Number: " + data[0] + "\n"
-            text = text + "Student Name: " + data[1] + "\n"
-            text = text + "Total Coursework Mark: " + str(coursework) + "\n"
-            text = text + "Exam: " + str(exam) + "\n"
-            text = text + "Overall Percentage: " + str(round(percentage, 1)) + "%\n"
-            text = text + "Student Grade: " + get_grade(percentage) + "\n"
+            text = student_text(data)
     show_text(text)
 
 
@@ -106,7 +104,7 @@ search_label.pack(side=LEFT, padx=10)
 search_entry = Entry(search_frame)
 search_entry.pack(side=LEFT)
 search_button = Button(search_frame, text="Search", command=search)
-search_button.pack(side=LEFT, padx=5)
+search_button.pack(side=LEFT, padx=10)
 
 view_all_output = Text(main_frame, state=DISABLED)
 view_all_output.place(x=0, y=40, width=530, height=520)
