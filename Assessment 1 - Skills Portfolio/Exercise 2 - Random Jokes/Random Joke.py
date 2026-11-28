@@ -3,7 +3,7 @@ import random
 
 
 # Open the randomJokes.txt file
-with open("randomJokes.txt", "r", encoding='utf-8') as file:
+with open("randomJokes.txt", "r") as file:
     jokes = file.readlines() # Reads all of the lines of the txt file
     punchline_text = ""
 

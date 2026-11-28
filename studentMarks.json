@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1345,
+        "student": "John Curry",
+        "classwork": [
+            8,
+            15,
+            7
+        ],
+        "exam": 45
+    },
+    {
+        "id": 2345,
+        "student": "Sam Sturtivant",
+        "classwork": [
+            14,
+            15,
+            14
+        ],
+        "exam": 77
+    },
+    {
+        "id": 9876,
+        "student": "Lee Scott",
+        "classwork": [
+            17,
+            11,
+            16
+        ],
+        "exam": 99
+    },
+    {
+        "id": 3724,
+        "student": "Matt Thompson",
+        "classwork": [
+            19,
+            11,
+            15
+        ],
+        "exam": 81
+    },
+    {
+        "id": 1212,
+        "student": "Ron Herrema",
+        "classwork": [
+            14,
+            17,
+            18
+        ],
+        "exam": 66
+    },
+    {
+        "id": 8439,
+        "student": "Jake Hobbs",
+        "classwork": [
+            10,
+            11,
+            10
+        ],
+        "exam": 43
+    },
+    {
+        "id": 2344,
+        "student": "Jo Hyde",
+        "classwork": [
+            6,
+            15,
+            10
+        ],
+        "exam": 55
+    },
+    {
+        "id": 9384,
+        "student": "Gareth Southgate",
+        "classwork": [
+            5,
+            6,
+            8
+        ],
+        "exam": 33
+    },
+    {
+        "id": 8327,
+        "student": "Alan Shearer",
+        "classwork": [
+            20,
+            20,
+            20
+        ],
+        "exam": 100
+    },
+    {
+        "id": 2983,
+        "student": "Les Ferdinand",
+        "classwork": [
+            15,
+            17,
+            18
+        ],
+        "exam": 92
+    },
+    {
+        "id": 1234,
+        "student": "Charm",
+        "classwork": [
+            2,
+            2,
+            2
+        ],
+        "exam": 100
+    }
+]
